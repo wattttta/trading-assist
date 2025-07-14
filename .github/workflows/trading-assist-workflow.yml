@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  numpy-test:
+  notify_buy_signal:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
