@@ -1,4 +1,4 @@
-from domain.constants import TICKERS, RSI_THRESHOLD
+from domain.constants import RSI_THRESHOLD
 from application.rsi_notify_service import notify_rsi_signal
 from application.get_stocks_service import get_stocks
 
