@@ -1,22 +1,34 @@
 name: trading-assist-workflow
 
 on:
-  push:
-    branches: 
-      - main
-  workflow_dispatch:
+  schedule:
+    - cron: 0/10 8-15 * * 1-5
 
 jobs:
   notify_buy_signal:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.13.5'
+          python-version: '3.x'
           architecture: 'x64'
       - name: Install dependencies
-        run: pip install -r requirements.txt
-      - name: Run Python
-        run: python app/main.py
+        uses: actions/cache@v3
+        id: cache
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      - run: |
+          if [ -d "~/.cache/pip" ]; then
+            echo "Cache exists, using cache"
+          else
+            echo "Cache does not exist, installing dependencies"
+            pip install -r requirements.txt
+          fi
+      - run: |
+          python app/main.py
