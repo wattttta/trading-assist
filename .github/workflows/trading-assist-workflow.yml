@@ -9,6 +9,7 @@ on:
 
     # JST 15:30（ラスト1回）→ UTC 06:30（月〜金）
     - cron: '30 6 * * 1-5'
+  workflow_dispatch:
 
 jobs:
   notify_buy_signal:
