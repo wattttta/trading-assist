@@ -1,8 +1,14 @@
-name: trading-assist-workflow
-
 on:
   schedule:
-    - cron: 0/10 8-15 * * 1-5
+    # JST 08:00〜08:55 → UTC 23:00〜23:55（日〜木）
+    - cron: '0/5 23 * * 0-4'
+
+    # JST 09:00〜15:25 → UTC 00:00〜06:25（月〜金）
+    - cron: '0/5 0-5 * * 1-5'
+    - cron: '0/5 6 * * 1-5'
+
+    # JST 15:30（ラスト1回）→ UTC 06:30（月〜金）
+    - cron: '30 6 * * 1-5'
 
 jobs:
   notify_buy_signal:
