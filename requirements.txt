@@ -1,4 +1,4 @@
 supabase
 yfinance
 line-bot-sdk
-websockets
+websockets>=8.1
