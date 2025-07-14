@@ -1,3 +1,4 @@
 supabase
 yfinance
 line-bot-sdk
+websockets
