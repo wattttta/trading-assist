@@ -8,3 +8,5 @@ def main(request):
 
     # RSIの閾値を超えた株の情報を通知する
     notify_rsi_signal(stocks, RSI_THRESHOLD)
+
+    return "Done"
